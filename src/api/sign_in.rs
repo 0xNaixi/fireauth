@@ -9,9 +9,7 @@ impl crate::FireAuth {
             self.api_key,
         );
 
-        let client = reqwest::Client::new();
-        let resp = client.post(&url)
-            .header("Content-Type", "application/json")
+        let resp = self.create_request(&url)
             .json(&SignInPayload {
                 email,
                 password,

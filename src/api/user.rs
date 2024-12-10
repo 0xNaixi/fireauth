@@ -9,9 +9,7 @@ impl crate::FireAuth {
             self.api_key,
         );
 
-        let client = reqwest::Client::new();
-        let resp = client.post(url)
-            .header("Content-Type", "application/json")
+        let resp = self.create_request(&url)
             .json(&UserInfoPayload { id_token })
             .send()
             .await?;
@@ -53,9 +51,7 @@ impl crate::FireAuth {
             self.api_key,
         );
 
-        let client = reqwest::Client::new();
-        let resp = client.post(url)
-            .header("Content-Type", "application/json")
+        let resp = self.create_request(&url)
             .json(&UpdateUserPayload {
                 id_token,
                 email,
@@ -80,8 +76,7 @@ impl crate::FireAuth {
             self.api_key,
         );
 
-        let client = reqwest::Client::new();
-        let resp = client.post(url)
+        let resp = self.create_request(&url)
             .header("Content-Type", "application/json")
             .json(&SendOobCodePayload { request_type, id_token, email })
             .send()

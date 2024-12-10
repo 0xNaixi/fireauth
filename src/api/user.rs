@@ -110,12 +110,18 @@ struct UserInfoResponse {
 #[serde(rename_all = "camelCase")]
 pub struct User {
     pub local_id: String,
-    pub email: String,
-    pub password_hash: String,
-    pub email_verified: bool,
-    pub password_updated_at: u64,
-    pub provider_user_info: Vec<ProviderUserInfo>,
-    pub valid_since: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub email: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub password_hash: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub email_verified: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub password_updated_at: Option<u64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub provider_user_info: Option<Vec<ProviderUserInfo>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub valid_since: Option<String>,
     pub last_login_at: String,
     pub created_at: String,
     pub last_refresh_at: String,

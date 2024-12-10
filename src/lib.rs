@@ -18,8 +18,8 @@ pub struct FireAuth {
 }
 
 impl FireAuth {
-    pub fn new(api_key: String) -> Self {
-        Self{ api_key , request_custom_data: None }
+    pub fn new(api_key: String,request_custom_data: Option<RequestCustomData>) -> Self {
+        Self{ api_key , request_custom_data }
     }
 
     fn create_request(&self, url: &str) -> reqwest::RequestBuilder {
